@@ -13,6 +13,8 @@ export default {
       colors: {
         'black-Color': '#272626',
         'white-Color': '#FFFFFF',
+        'card-color':
+          'linear-gradient(to bottom, rgba(79, 76, 74, 0.9), rgba(94, 91, 89, 0.8), rgba(108, 105, 103, 0.9))',
       },
     },
   },

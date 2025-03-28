@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import Button from '../Components/Button/Button';
 import { cn } from '../Utils/utils';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiMenu, FiX } from 'react-icons/fi';
@@ -25,13 +24,13 @@ const navItem = [
 const menuVariant = {
   hidden: {
     opacity: 0,
-    width: '0vw',
+    width: '0',
     x: '100vw',
   },
   visible: {
     opacity: 1,
-    width: '100vw',
-    x: '0vw',
+    width: 'calc(100vw)',
+    x: '0',
     transition: {
       duration: 0.3,
       when: 'beforeChildren',
@@ -78,7 +77,7 @@ const Navbar = () => {
   const location = useLocation();
 
   return (
-    <header className='fixed w-full h-[15vh] z-20 border-b-[1px] border-solid border-black-Color lg:px-6  bg-white-Color'>
+    <header className='fixed w-full  z-20 border-b-[1px] border-solid border-black-Color lg:px-6  bg-white-Color'>
       <div className='mx-auto lg:px-4 lg:py-2 '>
         <div className='flex items-center justify-between'>
           <nav className='hidden md:flex items-center justify-center gap-10'>
@@ -96,7 +95,7 @@ const Navbar = () => {
               </Link>
             ))}
           </nav>
-          <div className='brand-logo p-7  md:block'>
+          <div className='brand-logo p-7 relative lg:right-14  md:block'>
             <h1 className='font-custom text-4xl font-extrabold '>
               byte & bean
             </h1>
@@ -108,7 +107,7 @@ const Navbar = () => {
           </div>
 
           <motion.button
-            className='md:hidden inline-flex items-center justify-center bg-transparent z-30  text-right hover:bg-zinc-500 rounded-full h-9 w-9 duration-30 absolute right-1 top-9 '
+            className='md:hidden inline-flex items-center justify-center bg-transparent z-30 text-right hover:bg-zinc-500 rounded-full h-9 w-9 duration-30 relative right-2'
             onClick={() => setIsOpen(!isOpen)}
             whileTap={{ scale: 0.9 }}>
             <AnimatePresence mode='wait' initial={false}>
@@ -142,7 +141,7 @@ const Navbar = () => {
             initial='hidden'
             animate='visible'
             exit='exit'
-            className='md:hidden fixed w-full h-screen top-0 bg-black-Color overflow-hidden'>
+            className='md:hidden fixed left-0 top-0 inset-0 h-[110vh] bg-black-Color overflow-hidden'>
             <nav className='flex flex-col px-4 py-6 space-y-6 gap-8'>
               {navItem.map((item, index) => (
                 <motion.div key={index} variants={itemVariants}>
@@ -160,7 +159,7 @@ const Navbar = () => {
               ))}
               <motion.div
                 variants={itemVariants}
-                className='w-full flex items-end justify-between'>
+                className='w-full flex items-end justify-center lg:justify-between '>
                 <div>
                   <h1 className='text-zinc-400 text-lg w-[180px]'>
                     Just brewed happiness in a cup!
@@ -169,7 +168,7 @@ const Navbar = () => {
                 <img
                   src={Gif}
                   alt='Gif Image'
-                  className='w-[250px] h-[270px] rounded-md'
+                  className='w-[200px] h-[270px] rounded-md'
                 />
               </motion.div>
             </nav>
