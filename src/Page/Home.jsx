@@ -1,8 +1,10 @@
 import React from 'react';
 import { heroSection } from '../Components/Data/HomeData/';
 import video1 from '../../public/Image/mp4.mp4';
+import Package1 from '../../public/Image/package.png';
 import image1 from '../../public/Image/homeImage.jpg';
 import useFetch from '../Components/useFetch';
+import Loader from '../Components/Loader/Loader';
 
 export const Home = () => {
   return (
@@ -81,43 +83,62 @@ const Product = () => {
 
   console.log('Products in component:', products);
 
-  if (isLoading) return <p>Loading...</p>;
   if (error) return <p className='text-red-500'>Error: {error}</p>;
 
   return (
     <div className='w-full bg-black-Color'>
-      <h2>Product List</h2>
+      <div className='flex items-center justify-center flex-col px-5 pt-20 lg:pt-44 '>
+        <h1 className='text-gray-300 font-custom font-thin text-xl'>
+          We are multiple ranges,
+        </h1>
+        <h1 className='text-white uppercase font-extrabold text-5xl text-center mt-5 lg:text-6xl lg:w-[550px]'>
+          Discover Your New Coffee Haven
+        </h1>
+      </div>
       <div className='w-full px-8 lg:px-16 py-10 h-auto grid   gap-4 lg:gap-0 grid-cols-2 lg:grid-cols-3 place-items-center'>
         {products && products.length > 0 ? (
           products.slice(0, 6).map((item) => (
             <div className='w-full' key={item.id}>
-              <div
-                className='flex items-center justify-center   w-full h-[250px] lg:w-[390px] lg:h-[460px]'
-                style={{
-                  background:
-                    'linear-gradient(150deg, rgba(160,158,156,1) 0%, rgba(137,134,128,1) 22%, rgba(118,113,107,1) 47%, rgba(105,99,93,1) 73%, rgba(116,110,107,1) 83%, rgba(104,97,91,1) 92%, rgba(111,105,100,1) 100%)',
-                }}>
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className='w-[200px] h-[300px]'
-                />
-              </div>
-              <div className='my-5 lg:w-[390px]'>
-                <h3 className='text-[#decca8] mb-3 uppercase font-extrabold text-lg'>
-                  {item.title}
-                </h3>
-                <div className='flex items-center justify-between'>
-                  <p className='text-[#decca8] text-sm'>
-                    {item.ingredients.join(', ')}
-                  </p>
-                  <p className='text-[#decca8] text-sm '>${item.price}</p>
-                </div>
-              </div>
+              {isLoading ? (
+                <Loader />
+              ) : (
+                <>
+                  <div
+                    className='flex items-center justify-center   w-full h-[250px] lg:w-[390px] lg:h-[460px]'
+                    style={{
+                      background:
+                        'linear-gradient(150deg, rgba(160,158,156,1) 0%, rgba(137,134,128,1) 22%, rgba(118,113,107,1) 47%, rgba(105,99,93,1) 73%, rgba(116,110,107,1) 83%, rgba(104,97,91,1) 92%, rgba(111,105,100,1) 100%)',
+                    }}>
+                    <div className='relative  w-[500px] h-[200px] flex items-center justify-center'>
+                      <img
+                        src={item.image}
+                        alt=''
+                        className='absolute w-[120px] h-[180px] lg:w-[280px] lg:h-[350px] transition-opacity duration-500 ease-out hover:opacity-0 rounded-md object-cover'
+                      />
+                      <img
+                        src={Package1}
+                        alt={item.title}
+                        className=' w-[180px] h-[180px] lg:w-[300px] lg:h-[300px] object-cover '
+                      />
+                    </div>
+                  </div>
+                  <div className='my-5 lg:w-[390px]'>
+                    <h3 className='text-[#decca8] mb-3 uppercase font-extrabold text-lg'>
+                      {item.title}
+                    </h3>
+                    <div className='flex items-center justify-between'>
+                      <p className='text-[#decca8] text-sm'>
+                        {item.ingredients.join(', ')}
+                      </p>
+                      <p className='text-[#decca8] text-sm '>${item.price}</p>
+                    </div>
+                  </div>
+                </>
+              )}
             </div>
           ))
         ) : (
-          <p>No products available.</p>
+          <p className='text-white'>No products available.</p>
         )}
       </div>
     </div>
