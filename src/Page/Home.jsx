@@ -1,12 +1,34 @@
-import React from 'react';
+'use client';
+import React, { useEffect } from 'react';
 import { heroSection } from '../Components/Data/HomeData/';
+import { Coffee } from '../Components/Data/HomeData/';
 import video1 from '../../public/Image/mp4.mp4';
-import Package1 from '../../public/Image/package.png';
 import image1 from '../../public/Image/homeImage.jpg';
-import useFetch from '../Components/useFetch';
-import Loader from '../Components/Loader/Loader';
+import {
+  motion,
+  useScroll,
+  useTransform,
+  AnimatePresence,
+} from 'framer-motion';
+import { useRef } from 'react';
+import Lenis from '@studio-freight/lenis';
 
 export const Home = () => {
+  useEffect(() => {
+    const lenis = new Lenis();
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+
+    return () => {
+      lenis.destroy();
+    };
+  }, []);
+
   return (
     <div className='pt-32 w-full'>
       <Hero />
@@ -50,24 +72,35 @@ const Hero = () => {
 };
 
 const ImageSection = () => {
+  const containerRef = useRef(null);
+
+  const { scrollY } = useScroll(); // Track full page scroll
+
+  // Apply movement to the images, not the container
+  const yTransform = useTransform(scrollY, [0, 1000], ['10%', '-40%']);
   return (
-    <div className='w-full h-[50vh] lg:h-screen  px-8 lg:px-16 flex items-center justify-center mt-10 mb-10 lg:mb-20 lg:mt-20'>
-      <div className='flex w-full lg:w-[75%] h-full gap-0'>
+    <div
+      ref={containerRef}
+      className='w-full h-[50vh] lg:h-screen px-8 lg:px-16 flex items-center justify-center mt-10 mb-10 lg:mb-20 lg:mt-20'>
+      <div className='flex w-full lg:w-[75%] h-full gap-0 overflow-hidden'>
         <div className='w-[50%] h-full'>
-          <img
+          <motion.img
             src={image1}
             alt='image'
             className='w-full h-[50vh] lg:h-full object-cover'
+            style={{ y: yTransform }}
           />
         </div>
         <div className='w-[50%] h-full'>
-          <video
+          <motion.video
             src={video1}
             autoPlay
             muted
             loop
             playsInline
-            className='w-full h-[50vh]  lg:h-full object-cover'></video>
+            className='w-full h-[50vh] lg:h-full object-cover'
+            style={{ y: yTransform }}
+          />
         </div>
       </div>
     </div>
@@ -75,16 +108,49 @@ const ImageSection = () => {
 };
 
 const Product = () => {
-  const {
-    data: products,
-    isLoading,
-    error,
-  } = useFetch('https://api.sampleapis.com/coffee/hot');
+  const productVariant = {
+    hidden: {
+      opacity: 0,
+    },
+    visible: {
+      opacity: 1,
+      transition: {
+        duration: 0.5,
+        when: 'beforeChildren',
+        staggerChildren: 0.5,
+      },
+    },
+    exit: {
+      opacity: 0,
+      transition: {
+        duration: 0.5,
+        when: 'afterChildren',
+        staggerChildren: 0.2,
+        staggerDirection: -1,
+      },
+    },
+  };
 
-  console.log('Products in component:', products);
-
-  if (error) return <p className='text-red-500'>Error: {error}</p>;
-
+  const itemVariant = {
+    hidden: {
+      opacity: 0,
+      y: 20,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.7,
+      },
+    },
+    exit: {
+      opacity: 0,
+      y: -20,
+      transition: {
+        duration: 0.5,
+      },
+    },
+  };
   return (
     <div className='w-full bg-black-Color'>
       <div className='flex items-center justify-center flex-col px-5 pt-20 lg:pt-44 '>
@@ -95,36 +161,46 @@ const Product = () => {
           Discover Your New Coffee Haven
         </h1>
       </div>
-      <div className='w-full px-8 lg:px-16 py-10 h-auto grid   gap-4 lg:gap-0 grid-cols-2 lg:grid-cols-3 place-items-center'>
-        {products && products.length > 0 ? (
-          products.slice(0, 6).map((item) => (
-            <div className='w-full' key={item.id}>
-              {isLoading ? (
-                <Loader />
-              ) : (
+
+      <motion.div
+        variants={productVariant}
+        initial='hidden'
+        whileInView='visible'
+        exit='exit'
+        className='w-full px-8 lg:px-16 py-10 h-auto grid gap-4 lg:gap-0 grid-cols-2 lg:grid-cols-3 place-items-start'>
+        {Coffee && Coffee.length > 0 ? (
+          Coffee.slice(0, 6).map((item) => (
+            <AnimatePresence mode='wait' initial={true}>
+              <motion.div
+                variants={itemVariant}
+                className='w-full'
+                key={item.id}>
                 <>
                   <div
-                    className='flex items-center justify-center   w-full h-[250px] lg:w-[390px] lg:h-[460px]'
+                    className='flex items-center justify-center w-full h-[250px] lg:w-[390px] lg:h-[460px]'
                     style={{
                       background:
-                        'linear-gradient(150deg, rgba(160,158,156,1) 0%, rgba(137,134,128,1) 22%, rgba(118,113,107,1) 47%, rgba(105,99,93,1) 73%, rgba(116,110,107,1) 83%, rgba(104,97,91,1) 92%, rgba(111,105,100,1) 100%)',
+                        ' linear-gradient(14deg, rgba(249,244,215,1) 0%, rgba(231,215,184,1) 22%, rgba(158,141,120,1) 47%, rgba(143,131,89,1) 73%, rgba(98,87,56,1) 83%, rgba(104,97,91,1) 92%, rgba(111,105,100,1) 100%)',
                     }}>
-                    <div className='relative  w-[500px] h-[200px] flex items-center justify-center'>
+                    <div className='relative w-[500px] h-[200px] flex items-center justify-center group'>
+                      {/* First Image (Initially Visible, Disappears on Hover) */}
+                      <img
+                        src={item.hover}
+                        alt='Static'
+                        className='absolute w-full h-[180px] lg:w-[350px] lg:h-[400px] object-cover rounded-md transition-opacity duration-500 ease-out opacity-100 group-hover:opacity-0'
+                      />
+
+                      {/* Second Image (Initially Hidden, Appears on Hover) */}
                       <img
                         src={item.image}
-                        alt=''
-                        className='absolute w-[120px] h-[180px] lg:w-[280px] lg:h-[350px] transition-opacity duration-500 ease-out hover:opacity-0 rounded-md object-cover'
-                      />
-                      <img
-                        src={Package1}
-                        alt={item.title}
-                        className=' w-[180px] h-[180px] lg:w-[300px] lg:h-[300px] object-cover '
+                        alt='Hover'
+                        className='absolute w-[150px] h-[250px] lg:w-[300px] lg:h-[400px] object-cover rounded-md opacity-0 transition-opacity duration-500 ease-out group-hover:opacity-100'
                       />
                     </div>
                   </div>
                   <div className='my-5 lg:w-[390px]'>
                     <h3 className='text-[#decca8] mb-3 uppercase font-extrabold text-lg'>
-                      {item.title}
+                      {item.name}
                     </h3>
                     <div className='flex items-center justify-between'>
                       <p className='text-[#decca8] text-sm'>
@@ -134,13 +210,13 @@ const Product = () => {
                     </div>
                   </div>
                 </>
-              )}
-            </div>
+              </motion.div>
+            </AnimatePresence>
           ))
         ) : (
           <p className='text-white'>No products available.</p>
         )}
-      </div>
+      </motion.div>
     </div>
   );
 };

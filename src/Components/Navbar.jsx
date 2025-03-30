@@ -21,6 +21,11 @@ const navItem = [
   },
 ];
 
+const navbarVariant = {
+  hidden: { y: -50, opacity: 0 },
+  visible: { y: 0, opacity: 1, transition: { duration: 0.7, ease: 'easeOut' } },
+};
+
 const menuVariant = {
   hidden: {
     opacity: 0,
@@ -77,7 +82,11 @@ const Navbar = () => {
   const location = useLocation();
 
   return (
-    <header className='fixed w-full  z-20 border-b-[1px] border-solid border-black-Color lg:px-6  bg-white-Color'>
+    <motion.header
+      variants={navbarVariant}
+      initial='hidden'
+      animate='visible'
+      className='fixed w-full  z-20 border-b-[1px] border-solid border-black-Color lg:px-6  bg-white-Color'>
       <div className='mx-auto lg:px-4 lg:py-2 '>
         <div className='flex items-center justify-between'>
           <nav className='hidden md:flex items-center justify-center gap-10'>
@@ -95,7 +104,7 @@ const Navbar = () => {
               </Link>
             ))}
           </nav>
-          <div className='brand-logo p-7 relative lg:right-14  md:block'>
+          <div className='brand-logo p-4 relative lg:right-14  md:block'>
             <h1 className='font-custom text-4xl font-extrabold '>
               byte & bean
             </h1>
@@ -175,7 +184,7 @@ const Navbar = () => {
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+    </motion.header>
   );
 };
 
