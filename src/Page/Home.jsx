@@ -45,26 +45,48 @@ const Hero = () => {
         <div
           className=' relative flex flex-col items-center justify-center w-full'
           key={index}>
-          <div className='mb-5'>
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: 'easeOut' }}
+            viewport={{ once: false }}
+            className='mb-5'>
             <h1 className='font-custom font-thin text-2xl text-gray-500 select-none'>
               {item.subHeader}
             </h1>
+          </motion.div>
+          <div className='relative overflow-hidden'>
+            <div className='absolute bottom-0 left-0 right-0 h-4 bg-white to-transparent pointer-events-none z-10' />
+            <motion.div
+              initial={{ opacity: 1, y: 100 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: 'easeOut' }}
+              viewport={{ once: false }}
+              className='mx-12 mb-5 text-center overflow-hidden'>
+              <h1 className='font-extrabold uppercase text-zinc-800 text-5xl lg:text-[8rem] select-none lg:leading-[108px] overflow-hidden'>
+                {item.header}
+              </h1>
+            </motion.div>
           </div>
-          <div className='mx-12 mb-5 text-center'>
-            <h1 className='font-extrabold uppercase text-zinc-800 text-5xl lg:text-[8rem] select-none lg:leading-[108px]'>
-              {item.header}
-            </h1>
-          </div>
-          <div className='mb-5 text-center'>
-            <p className='text-gray-800 w-full lg:w-[600px] font-bold'>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, ease: 'easeOut' }}
+            viewport={{ once: false }}
+            className='mb-5 text-center'>
+            <p className='text-gray-800 w-full text-xs lg:text-lg lg:w-[600px]'>
               {item.description}
             </p>
-          </div>
-          <div>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, ease: 'easeOut' }}
+            viewport={{ once: false }}>
             <button className='border-[1px] border-solid border-black-Color px-8 py-2 hover:bg-black-Color hover:text-white-Color duration-700'>
               {item.button}
             </button>
-          </div>
+          </motion.div>
         </div>
       ))}
     </div>
@@ -81,7 +103,7 @@ const ImageSection = () => {
   return (
     <div
       ref={containerRef}
-      className='w-full h-[50vh] lg:h-screen px-8 lg:px-16 flex items-center justify-center mt-10 mb-10 lg:mb-20 lg:mt-20'>
+      className=' w-full h-[50vh] lg:h-screen px-8 lg:px-16 flex items-center justify-center mt-10 mb-10 lg:mb-20 lg:mt-20'>
       <div className='flex w-full lg:w-[75%] h-full gap-0 overflow-hidden'>
         <div className='w-[50%] h-full'>
           <motion.img
@@ -153,13 +175,56 @@ const Product = () => {
   };
   return (
     <div className='w-full bg-black-Color'>
-      <div className='flex items-center justify-center flex-col px-5 pt-20 lg:pt-44 '>
-        <h1 className='text-gray-300 font-custom font-thin text-xl'>
+      <div className='flex items-center justify-center flex-col px-5 pt-20 lg:pt-44 mb-6 '>
+        <motion.h1
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: 'easeOut' }}
+          viewport={{ once: false }}
+          className='text-gray-300 font-custom font-thin text-xl'>
           We are multiple ranges,
-        </h1>
-        <h1 className='text-white uppercase font-extrabold text-5xl text-center mt-5 lg:text-6xl lg:w-[550px]'>
-          Discover Your New Coffee Haven
-        </h1>
+        </motion.h1>
+        <div className='relative'>
+          <div className='absolute bottom-0 top-20 left-0 right-0 h-12 bg-black-Color  pointer-events-none z-[2]' />
+
+          <motion.div
+            initial={{ opacity: 1, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: 'easeOut' }}
+            viewport={{ once: false }}
+            className='relative'>
+            <h1 className='text-white uppercase font-extrabold text-5xl text-center mt-5 lg:text-6xl lg:w-[550px] z-[5]'>
+              Discover
+            </h1>
+          </motion.div>
+        </div>
+        <div className='relative'>
+          <div className='absolute bottom-0 top-20 left-0 right-0 h-12 bg-black-Color  pointer-events-none z-30' />
+
+          <motion.div
+            initial={{ opacity: 1, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: 'easeOut' }}
+            viewport={{ once: false }}
+            className='relative  z-[5]'>
+            <h1 className='text-white uppercase font-extrabold text-5xl text-center mt-5 lg:text-6xl lg:w-[550px] z-10'>
+              Your New
+            </h1>
+          </motion.div>
+        </div>
+        <div className='relative '>
+          <div className='absolute bottom-0 top-20 left-0 right-0 h-12 bg-black-Color  pointer-events-none z-40' />
+          <motion.div
+            initial={{ opacity: 1, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, ease: 'easeOut' }}
+            viewport={{ once: false }}
+            className='relative z-30'>
+            <h1 className='text-white uppercase font-extrabold text-5xl text-center mt-5 lg:text-6xl lg:w-[550px] z-50'>
+              Coffee Haven
+            </h1>
+          </motion.div>
+        </div>
       </div>
 
       <motion.div

@@ -86,7 +86,7 @@ const Navbar = () => {
       variants={navbarVariant}
       initial='hidden'
       animate='visible'
-      className='fixed w-full  z-20 border-b-[1px] border-solid border-black-Color lg:px-6  bg-white-Color'>
+      className='fixed w-full z-50 border-b-[1px] border-solid border-black-Color lg:px-6  bg-white-Color'>
       <div className='mx-auto lg:px-4 lg:py-2 '>
         <div className='flex items-center justify-between'>
           <nav className='hidden md:flex items-center justify-center gap-10'>
