@@ -91,21 +91,33 @@ const Navbar = () => {
         <div className='flex items-center justify-between'>
           <nav className='hidden md:flex items-center justify-center gap-10'>
             {navItem.map((item, index) => (
-              <Link
-                to={item.href}
-                key={index}
-                className={cn(
-                  '',
-                  location.pathname === item.href
-                    ? 'text-black-Color'
-                    : 'text-zinc-600'
-                )}>
-                {item.name}
-              </Link>
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                className='relative group w-fit'>
+                <Link
+                  to={item.href}
+                  key={index}
+                  className={cn(
+                    '',
+                    location.pathname === item.href
+                      ? 'text-black-Color'
+                      : 'text-zinc-600'
+                  )}>
+                  {item.name}
+                  <motion.span
+                    className={cn(
+                      'absolute left-0 bottom-0 h-[2px] bg-black-Color w-full origin-left transition-transform duration-300',
+                      location.pathname === item.href
+                        ? 'scale-x-100'
+                        : 'scale-x-0 group-hover:scale-x-100'
+                    )}
+                  />
+                </Link>
+              </motion.div>
             ))}
           </nav>
           <div className='brand-logo p-4 relative lg:right-14  md:block'>
-            <h1 className='font-custom text-4xl font-extrabold '>
+            <h1 className='font-zodiak text-2xl lg:text-4xl font-extrabold '>
               byte & bean
             </h1>
           </div>
@@ -153,17 +165,29 @@ const Navbar = () => {
             className='md:hidden fixed left-0 top-0 inset-0 h-[110vh] bg-black-Color overflow-hidden'>
             <nav className='flex flex-col px-4 py-6 space-y-6 gap-8'>
               {navItem.map((item, index) => (
-                <motion.div key={index} variants={itemVariants}>
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  className='relative w-fit group'
+                  key={index}
+                  variants={itemVariants}>
                   <Link
                     to={item.href}
                     className={cn(
-                      'text-5xl font-custom font-bold hover:text-white-Color duration-300',
+                      'text-5xl font-custom font-bold relative pb-1 duration-300',
                       location.pathname === item.href
-                        ? ' text-white-Color'
+                        ? 'text-white-Color'
                         : 'text-zinc-600'
                     )}>
                     {item.name}
                   </Link>
+                  <motion.span
+                    className={cn(
+                      'absolute left-0 bottom-0 h-[2px] bg-white-Color w-full origin-left transition-transform duration-300',
+                      location.pathname === item.href
+                        ? 'scale-x-100'
+                        : 'scale-x-0 group-hover:scale-x-100'
+                    )}
+                  />
                 </motion.div>
               ))}
               <motion.div

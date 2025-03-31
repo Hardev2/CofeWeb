@@ -13,10 +13,14 @@ import coffee6 from '../../../public/Image/coffee6.png';
 
 export const heroSection = [
   {
-    subHeader: '   We are byte & bean',
-    header: ' Your Daily Brew, Reimagined.',
+    subHeader: ' We are byte & bean',
+    header: {
+      text1: 'Your Daily',
+      text2: 'Brew',
+      text3: 'Reimagined',
+    },
     description:
-      '  At Byte & Bean, we redefine your coffee experience by merging artisanal brews with innovative technology. Join us for a perfect blend of flavor and convenience, designed for the modern coffee lover.',
+      'Join us for a perfect blend of flavor and convenience, designed for the modern coffee lover.',
     button: 'About Us',
   },
 ];

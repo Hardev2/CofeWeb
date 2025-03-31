@@ -8,6 +8,8 @@ export default {
       fontFamily: {
         sans: ['Roboto', 'sans-serif'],
         custom: ['MainFont', 'sans-serif'],
+        custom2: ['Second-font', 'sans-serif'],
+        zodiak: ['Zodiak', 'sans-serif'],
       },
       gridTemplateColumns: { '70/30': '70% 28%' },
       colors: {
