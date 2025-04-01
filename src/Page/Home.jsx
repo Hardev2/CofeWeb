@@ -9,12 +9,14 @@ import parallaxImg1 from '../../public/Image/parallax-img1.jpg';
 import parallaxImg2 from '../../public/Image/parallax-img2.jpg';
 import parallaxImg3 from '../../public/Image/parallax-img3.jpg';
 import parallaxImg4 from '../../public/Image/parallax-img4.jpg';
+import Video2 from '../../public/Image/video2.mp4';
 import {
   motion,
   useScroll,
   useTransform,
   AnimatePresence,
   useMotionTemplate,
+  useSpring,
 } from 'framer-motion';
 import { useRef } from 'react';
 import Lenis from '@studio-freight/lenis';
@@ -41,6 +43,8 @@ export const Home = () => {
       <ImageSection />
       <Product />
       <ParallaxSection />
+      <Explore />
+      <VideoSection />
     </div>
   );
 };
@@ -217,7 +221,7 @@ const Product = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: 'easeOut' }}
           viewport={{ once: false }}
-          className='text-gray-300 font-zodiak font-thin text-xl'>
+          className='text-gray-300 font-zodiak font-thin text-xl select-none'>
           We are multiple ranges,
         </motion.h1>
         <div className='relative'>
@@ -229,7 +233,7 @@ const Product = () => {
             transition={{ duration: 1.2, delay: 0.1, ease: 'easeOut' }}
             viewport={{ once: false }}
             className='relative'>
-            <h1 className='text-white uppercase font-extrabold text-4xl text-center mt-5 lg:text-6xl lg:w-[550px] z-[5]'>
+            <h1 className='text-white uppercase font-extrabold text-4xl text-center mt-5 lg:text-6xl lg:w-[550px] z-[5] select-none'>
               Discover
             </h1>
           </motion.div>
@@ -243,7 +247,7 @@ const Product = () => {
             transition={{ duration: 1.3, delay: 0.2, ease: 'easeOut' }}
             viewport={{ once: false }}
             className='relative  z-[5]'>
-            <h1 className='text-white uppercase font-extrabold text-4xl text-center lg:text-6xl lg:w-[550px] z-10'>
+            <h1 className='text-white uppercase font-extrabold text-4xl text-center lg:text-6xl lg:w-[550px] z-10 select-none'>
               Your New
             </h1>
           </motion.div>
@@ -256,7 +260,7 @@ const Product = () => {
             transition={{ duration: 1.4, delay: 0.3, ease: 'easeOut' }}
             viewport={{ once: false }}
             className='relative z-30'>
-            <h1 className='text-white uppercase font-extrabold text-4xl  text-center lg:text-6xl lg:w-[550px] z-50'>
+            <h1 className='text-white uppercase font-extrabold text-4xl  text-center lg:text-6xl lg:w-[550px] z-50 select-none'>
               Coffee Haven
             </h1>
           </motion.div>
@@ -324,7 +328,7 @@ const Product = () => {
 
 const ParallaxSection = () => {
   return (
-    <div className='w-full h-[70vh] lg:h-[200vh] relative'>
+    <div className='w-full h-[70vh] lg:h-[180vh] relative'>
       <div className='absolute top-[300px] lg:top-[550px] left-1/2 transform -translate-x-1/2 -translate-y-1/2'>
         <img
           src={centerImg}
@@ -411,5 +415,97 @@ const ParallaxImg2 = ({ className, alt, src, start, end }) => {
       className={className}
       style={{ x }}
     />
+  );
+};
+
+const Explore = () => {
+  return (
+    <div className='h-[60vh] w-full pt-40 px-5 lg:pt-0'>
+      <div className='flex items-center justify-center flex-col'>
+        <div className='relative '>
+          <div className='absolute bg-white-Color top-9 lg:top-[66px] bottom-0 left-0 right-0 h-32 pointer-events-none z-[2]'></div>
+          <motion.div
+            initial={{ opacity: 1, y: 100 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.2, delay: 0.1, ease: 'easeOut' }}
+            viewport={{ once: false }}
+            className='relative'>
+            <h1 className='uppercase text-4xl lg:text-7xl font-extrabold select-none'>
+              Crafting
+            </h1>
+          </motion.div>
+        </div>
+        <div className='relative '>
+          <div className='absolute bg-white-Color top-9 lg:top-[66px] bottom-0 left-0 right-0 h-32 pointer-events-none z-[5]'></div>
+          <motion.div
+            initial={{ opacity: 1, y: 100 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.3, delay: 0.2, ease: 'easeOut' }}
+            viewport={{ once: false }}
+            className='relative z-[3]'>
+            <h1 className='uppercase text-4xl lg:text-7xl font-extrabold select-none'>
+              Coffee
+            </h1>
+          </motion.div>
+        </div>
+        <div className='relative '>
+          <div className='absolute bg-white-Color top-9 lg:top-[66px] bottom-0 left-0 right-0 h-32 pointer-events-none z-[10]'></div>
+          <motion.div
+            initial={{ opacity: 1, y: 100 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.4, delay: 0.3, ease: 'easeOut' }}
+            viewport={{ once: false }}
+            className='relative z-[8]'>
+            <h1 className='uppercase text-4xl lg:text-7xl font-extrabold select-none'>
+              Innovations
+            </h1>
+          </motion.div>
+        </div>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease: 'easeOut' }}
+          viewport={{ once: false }}
+          className='mb-5 mt-5 text-center z-30'>
+          <p className='text-gray-800 w-full text-xs lg:text-lg lg:w-[600px]'>
+            We are for unique aesthetics – where design meets flavor.
+          </p>
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease: 'easeOut' }}
+          viewport={{ once: false }}
+          className='z-40'>
+          <button className='border-[1px] border-solid border-black-Color px-8 py-2 hover:bg-black-Color hover:text-white-Color duration-700 uppercase text-sm'>
+            LifeSTYLE
+          </button>
+        </motion.div>
+      </div>
+    </div>
+  );
+};
+
+const VideoSection = () => {
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ['start start', 'end start'],
+  });
+  // Move only the video, not the container
+  const yTransform = useTransform(scrollYProgress, [0, 1], ['0%', '-30%']);
+
+  return (
+    <div ref={containerRef} className='h-[100vh] w-full overflow-hidden'>
+      <motion.video
+        src={Video2}
+        autoPlay
+        muted
+        loop
+        playsInline
+        className=' w-full h-screen object-cover'
+        style={{ y: yTransform }}
+      />
+    </div>
   );
 };

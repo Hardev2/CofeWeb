@@ -18,11 +18,19 @@
 
 @font-face {
   font-family: 'Zodiak';
-  src: url('../public//Fonts//Zodiak-Thin.otf') format('truetype');
+  src: url('../public//Fonts/CSMalicious-Regular_demo-BF67c65ff3265d2.otf')
+    format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
 ::-webkit-scrollbar {
   display: none;
+}
+
+.videoBg {
+  background-image: url('../public/Image/parallax-img1.jpg');
+  position: fixed;
+  background-size: cover;
+  background-position: center;
 }
