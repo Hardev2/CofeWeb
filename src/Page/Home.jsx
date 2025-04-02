@@ -1,7 +1,8 @@
 'use client';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { heroSection } from '../Components/Data/HomeData/';
 import { Coffee } from '../Components/Data/HomeData/';
+import { StoreData } from '../Components/Data/HomeData/';
 import video1 from '../../public/Image/mp4.mp4';
 import image1 from '../../public/Image/homeImage.jpg';
 import centerImg from '../../public/Image/parallax-center.jpg';
@@ -15,9 +16,9 @@ import {
   useScroll,
   useTransform,
   AnimatePresence,
-  useMotionTemplate,
-  useSpring,
 } from 'framer-motion';
+
+import { FaMinus, FaPlus } from 'react-icons/fa';
 import { useRef } from 'react';
 import Lenis from '@studio-freight/lenis';
 
@@ -45,6 +46,7 @@ export const Home = () => {
       <ParallaxSection />
       <Explore />
       <VideoSection />
+      <StoreSection />
     </div>
   );
 };
@@ -493,19 +495,132 @@ const VideoSection = () => {
     offset: ['start start', 'end start'],
   });
   // Move only the video, not the container
-  const yTransform = useTransform(scrollYProgress, [0, 1], ['0%', '-30%']);
+  const yTransform = useTransform(scrollYProgress, [0, 1], ['0%', '-20%']);
 
   return (
-    <div ref={containerRef} className='h-[100vh] w-full overflow-hidden'>
-      <motion.video
-        src={Video2}
-        autoPlay
-        muted
-        loop
-        playsInline
-        className=' w-full h-screen object-cover'
-        style={{ y: yTransform }}
-      />
+    <div
+      ref={containerRef}
+      className='h-[100vh] w-full overflow-hidden relative'>
+      <div className='sticky top-0 left-0 w-full h-screen  flex items-center justify-center overflow-hidden'>
+        <motion.video
+          src={Video2}
+          autoPlay
+          muted
+          loop
+          playsInline
+          className=' w-full h-[120vh] object-cover relative top-14 '
+          style={{ y: yTransform }}
+        />
+      </div>
+    </div>
+  );
+};
+
+const StoreSection = () => {
+  const [selected, setSelected] = useState(null);
+
+  const handleSingleSelection = (getCurrentId) => {
+    setSelected(getCurrentId === selected ? null : getCurrentId);
+  };
+
+  const contentVariants = {
+    hidden: { height: 0, opacity: 0 },
+    visible: {
+      height: 'auto',
+      opacity: 1,
+      transition: {
+        duration: 1,
+      },
+    },
+    exit: {
+      height: 0,
+      opacity: 0,
+      transition: {
+        duration: 1,
+      },
+    },
+  };
+  return (
+    <div className='pt-20 w-full h-auto bg-black-Color'>
+      <div className='relative'>
+        <div className='bg-black-Color absolute  top-9 lg:top-16 left-0 right-0 bottom-0 pointer-events-none h-32 z-[5]'></div>
+        <motion.div
+          initial={{ y: 100 }}
+          whileInView={{ y: 0 }}
+          transition={{ duration: 1.2, ease: 'easeOut' }}
+          viewport={{ once: false }}
+          className='relative flex items-center justify-center z-[2]'>
+          <h1 className='text-white uppercase font-extrabold  text-4xl lg:text-7xl  '>
+            Byte & Bean
+          </h1>
+        </motion.div>
+      </div>
+      <div className='relative'>
+        <div className='bg-black-Color absolute top-9 lg:top-16 left-0 right-0 bottom-0 pointer-events-none h-32 z-[10]'></div>
+        <motion.div
+          initial={{ opacity: 1, y: 100 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.3, delay: 0.1, ease: 'easeOut' }}
+          viewport={{ once: false }}
+          className='relative flex items-center justify-center  z-[5]'>
+          <h1 className='text-white uppercase font-extrabold text-4xl lg:text-7xl '>
+            Coffee
+          </h1>
+        </motion.div>
+      </div>
+      <div className='relative'>
+        <div className='bg-black-Color absolute top-9 lg:top-16 left-0 right-0 bottom-0 pointer-events-none h-32 z-[15]'></div>
+        <motion.div
+          initial={{ opacity: 1, y: 100 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.3, delay: 0.1, ease: 'easeOut' }}
+          viewport={{ once: false }}
+          className='relative flex items-center justify-center  z-[12]'>
+          <h1 className='text-white uppercase font-extrabold text-4xl lg:text-7xl '>
+            Store
+          </h1>
+        </motion.div>
+      </div>
+      <div className='accordion mt-10 z-20 relative'>
+        <div>
+          {StoreData && StoreData.length > 0 ? (
+            StoreData.map((itemData) => (
+              <div
+                key={itemData.id}
+                onClick={() => handleSingleSelection(itemData.id)}
+                className='flex flex-col items-center  py-5 border-t-[1px] border-solid border-white last:border-b-[1px] cursor-pointer group'>
+                <div className='flex items-center justify-between w-full text-white px-4'>
+                  <div className='flex items-center justify-center gap-2'>
+                    <h1 className='text-xl lg:text-5xl font-extrabold uppercase'>
+                      {itemData.name}
+                    </h1>
+                    <p className='font-zodiak lg:text-2xl'>
+                      {itemData.location}
+                    </p>
+                  </div>
+                  <div className='text-white  group-hover:text-black group-hover:bg-white transition duration-300 p-1 rounded-full border-[1px] border-solid border-white text-sm font-thin'>
+                    {selected ? <FaMinus /> : <FaPlus />}
+                  </div>
+                </div>
+                <AnimatePresence>
+                  {selected === itemData.id ? (
+                    <motion.div
+                      variants={contentVariants}
+                      initial='hidden'
+                      animate='visible'
+                      exit='exit'
+                      className='overflow-hidden w-full '>
+                      {itemData.carousel}
+                    </motion.div>
+                  ) : null}
+                </AnimatePresence>
+              </div>
+            ))
+          ) : (
+            <div className='text-red-500'>No data found!</div>
+          )}
+        </div>
+      </div>
     </div>
   );
 };

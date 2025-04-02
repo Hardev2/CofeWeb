@@ -10,6 +10,9 @@ import coffee3 from '../../../public/Image/coffee3.png';
 import coffee4 from '../../../public/Image/coffee4.png';
 import coffee5 from '../../../public/Image/coffee5.png';
 import coffee6 from '../../../public/Image/coffee6.png';
+import InfiniteScroll from '../InfiniteScroll/InfiniteScroll';
+import image1 from '../../../public/Image/2.png';
+import image2 from '../../../public/Image/4.png';
 
 export const heroSection = [
   {
@@ -102,5 +105,37 @@ export const Coffee = [
     name: 'Iced Latte',
     ingredients: ['Espresso', 'Milk', 'Ice'],
     price: '4.2',
+  },
+];
+
+const image = [
+  {
+    id: 1,
+    src: image1,
+    alt: 'Image',
+  },
+  {
+    id: 2,
+    src: image2,
+    alt: 'Image',
+  },
+];
+export const StoreData = [
+  {
+    id: 1,
+    name: 'Bytebourg',
+    location: '123 Byte Street, Tech City',
+    carousel: <InfiniteScroll images={image} />,
+  },
+  {
+    id: 2,
+    name: 'Beanova',
+    location: '45 Bean Avenue, Innovation Park',
+    carousel: <p>Coming Soon</p>,
+  },
+  {
+    id: 2,
+    name: 'Brewesse',
+    location: 'Coming Soon to Your City!',
   },
 ];
