@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { cn } from '../Utils/utils';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiMenu, FiX } from 'react-icons/fi';
-import Gif from '../../public/Image/coffeeGif.gif';
+import Gif from '../../public/Image/wordlogo.png';
 import { FaFacebook, FaInstagram, FaTwitter } from 'react-icons/fa';
 
 const navItem = [

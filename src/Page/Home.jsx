@@ -1,8 +1,14 @@
 'use client';
 import React, { useEffect, useState } from 'react';
-import { heroSection } from '../Components/Data/HomeData/';
-import { Coffee } from '../Components/Data/HomeData/';
-import { StoreData } from '../Components/Data/HomeData/';
+import {
+  heroSection,
+  Coffee,
+  StoreData,
+  playlistPart1,
+  playlistPart2,
+  playlistPart3,
+} from '../Components/Data/HomeData/';
+
 import video1 from '../../public/Image/mp4.mp4';
 import image1 from '../../public/Image/homeImage.jpg';
 import centerImg from '../../public/Image/parallax-center.jpg';
@@ -47,6 +53,7 @@ export const Home = () => {
       <Explore />
       <VideoSection />
       <StoreSection />
+      <TextSection />
     </div>
   );
 };
@@ -64,7 +71,7 @@ const Hero = () => {
             transition={{ duration: 0.7, ease: 'easeOut' }}
             viewport={{ once: false }}
             className='mb-5'>
-            <h1 className='font-zodiak font-thin text-2xl text-gray-500 select-none'>
+            <h1 className='font-zodiak font-thin text-2xl text-black-Color select-none'>
               {item.subHeader}
             </h1>
           </motion.div>
@@ -543,7 +550,7 @@ const StoreSection = () => {
   return (
     <div className='pt-20 w-full h-auto bg-black-Color'>
       <div className='relative'>
-        <div className='bg-black-Color absolute  top-9 lg:top-16 left-0 right-0 bottom-0 pointer-events-none h-32 z-[5]'></div>
+        <div className='bg-black-Color absolute  top-9 lg:top-[66px] left-0 right-0 bottom-0 pointer-events-none h-32 z-[5]'></div>
         <motion.div
           initial={{ y: 100 }}
           whileInView={{ y: 0 }}
@@ -556,20 +563,20 @@ const StoreSection = () => {
         </motion.div>
       </div>
       <div className='relative'>
-        <div className='bg-black-Color absolute top-9 lg:top-16 left-0 right-0 bottom-0 pointer-events-none h-32 z-[10]'></div>
+        <div className='bg-black-Color absolute top-9 lg:top-[66px] left-0 right-0 bottom-0 pointer-events-none h-32 z-[10]'></div>
         <motion.div
           initial={{ opacity: 1, y: 100 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.3, delay: 0.1, ease: 'easeOut' }}
           viewport={{ once: false }}
           className='relative flex items-center justify-center  z-[5]'>
-          <h1 className='text-white uppercase font-extrabold text-4xl lg:text-7xl '>
+          <h1 className='text-white  uppercase font-extrabold text-4xl lg:text-7xl '>
             Coffee
           </h1>
         </motion.div>
       </div>
       <div className='relative'>
-        <div className='bg-black-Color absolute top-9 lg:top-16 left-0 right-0 bottom-0 pointer-events-none h-32 z-[15]'></div>
+        <div className='bg-black-Color absolute top-9 lg:top-[66px]  left-0 right-0 bottom-0 pointer-events-none h-32 z-[15]'></div>
         <motion.div
           initial={{ opacity: 1, y: 100 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -589,7 +596,7 @@ const StoreSection = () => {
                 key={itemData.id}
                 onClick={() => handleSingleSelection(itemData.id)}
                 className='flex flex-col items-center  py-5 border-t-[1px] border-solid border-white last:border-b-[1px] cursor-pointer group'>
-                <div className='flex items-center justify-between w-full text-white px-4'>
+                <div className='flex items-center justify-between w-full text-white px-10'>
                   <div className='flex items-center justify-center gap-2'>
                     <h1 className='text-xl lg:text-5xl font-extrabold uppercase'>
                       {itemData.name}
@@ -599,7 +606,16 @@ const StoreSection = () => {
                     </p>
                   </div>
                   <div className='text-white  group-hover:text-black group-hover:bg-white transition duration-300 p-1 rounded-full border-[1px] border-solid border-white text-sm font-thin'>
-                    {selected ? <FaMinus /> : <FaPlus />}
+                    <AnimatePresence mode='wait' initial={false}>
+                      <motion.div
+                        key={selected ? 'minus' : 'plus'} // Unique key triggers re-animation
+                        initial={{ rotate: selected ? -90 : 90, opacity: 0 }}
+                        animate={{ rotate: 0, opacity: 1 }}
+                        exit={{ rotate: selected ? 90 : -90, opacity: 0 }}
+                        transition={{ duration: 0.2 }}>
+                        {selected ? <FaMinus /> : <FaPlus />}
+                      </motion.div>
+                    </AnimatePresence>
                   </div>
                 </div>
                 <AnimatePresence>
@@ -621,6 +637,77 @@ const StoreSection = () => {
           )}
         </div>
       </div>
+      <div className='text-center mt-14'>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease: 'easeOut' }}
+          viewport={{ once: false }}
+          className='z-40'>
+          <button className='border-[1px] border-solid border-white-Color px-8 py-2 hover:bg-white hover:text-black-Color duration-700  text-sm text-white-Color'>
+            Our Coffee Stores
+          </button>
+        </motion.div>
+      </div>
+    </div>
+  );
+};
+
+const TextSection = () => {
+  return (
+    <div className='w-full h-screen text-center bg-black-Color pt-[200px]'>
+      <motion.h1
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, ease: 'easeOut' }}
+        viewport={{ once: false }}
+        className='font-zodiak text-3xl font-thin text-white-Color mb-5'>
+        Enjoy
+      </motion.h1>
+      <div className='relative mb-16'>
+        <div className='bg-black-Color absolute  top-9 lg:top-16 left-0 right-0 bottom-0 pointer-events-none h-32 z-[5]'></div>
+        <motion.div
+          initial={{ y: 100 }}
+          whileInView={{ y: 0 }}
+          transition={{ duration: 1.2, ease: 'easeOut' }}
+          viewport={{ once: false }}
+          className='relative flex items-center justify-center z-[2]'>
+          <h1 className='text-white uppercase font-extrabold  text-4xl lg:text-7xl  '>
+            Playlist
+          </h1>
+        </motion.div>
+      </div>
+      <TextLoop songs={playlistPart1} />
+      <TextLoop songs={playlistPart2} />
+      <TextLoop songs={playlistPart3} />
+    </div>
+  );
+};
+
+const TextLoop = ({ songs = [] }) => {
+  return (
+    <div className='overflow-hidden relative z-40 mb-4 '>
+      <motion.div
+        className='whitespace-nowrap text-xl font-bold '
+        animate={{
+          x: ['0%', '-100%'],
+          transition: {
+            x: {
+              repeat: Infinity,
+              repeatType: 'loop',
+              duration: 50, // Adjust speed
+              ease: 'linear',
+            },
+          },
+        }}>
+        {songs.map((word, index) => (
+          <span
+            key={index}
+            className='mx-4 text-4xl lg:text-7xl text-white font-zodiak italic font-thin'>
+            {word}
+          </span>
+        ))}
+      </motion.div>
     </div>
   );
 };

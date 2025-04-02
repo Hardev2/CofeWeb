@@ -13,6 +13,10 @@ import coffee6 from '../../../public/Image/coffee6.png';
 import InfiniteScroll from '../InfiniteScroll/InfiniteScroll';
 import image1 from '../../../public/Image/2.png';
 import image2 from '../../../public/Image/4.png';
+import image3 from '../../../public/Carousel/image3.jpg';
+import image4 from '../../../public/Carousel/image4.jpg';
+import image5 from '../../../public/Carousel/image5.jpg';
+import image6 from '../../../public/Carousel/image6.jpg';
 
 export const heroSection = [
   {
@@ -119,7 +123,40 @@ const image = [
     src: image2,
     alt: 'Image',
   },
+  {
+    id: 3,
+    src: image3,
+    alt: 'Image',
+  },
+  {
+    id: 4,
+    src: image4,
+    alt: 'Image',
+  },
+  {
+    id: 5,
+    src: image5,
+    alt: 'Image',
+  },
+  {
+    id: 6,
+    src: image6,
+    alt: 'Image',
+  },
 ];
+
+const comingSoon = () => {
+  return (
+    <div className='relative w-[300px] h-[400px] left-10 border-[1px] border-solid border-black-Color'>
+      <img src={image6} alt='image' className='w-full h-full ' />
+
+      {/* Text centered over the image */}
+      <div className='absolute inset-0 flex items-center justify-center bg-white/10 backdrop-blur-[20px] rounded-lg border border-white/20'>
+        <h1 className='text-white text-3xl font-bold'>SOON</h1>
+      </div>
+    </div>
+  );
+};
 export const StoreData = [
   {
     id: 1,
@@ -131,11 +168,51 @@ export const StoreData = [
     id: 2,
     name: 'Beanova',
     location: '45 Bean Avenue, Innovation Park',
-    carousel: <p>Coming Soon</p>,
+    carousel: <InfiniteScroll images={image} />,
   },
   {
-    id: 2,
+    id: 3,
     name: 'Brewesse',
     location: 'Coming Soon to Your City!',
+    carousel: comingSoon(),
   },
+];
+
+export const playlistPart1 = [
+  'Blinding Lights - The Weeknd',
+  'Leave The Door Open - Silk Sonic',
+  'Good 4 U - Olivia Rodrigo',
+  'Peaches - Justin Bieber',
+  'Kiss Me More - Doja Cat',
+  'Heartbreak Anniversary - Giveon',
+  'Save Your Tears - The Weeknd',
+  'Call Out My Name - The Weeknd',
+  'Essence - Wizkid feat. Justin Bieber & Tems',
+  'Adore You - Harry Styles',
+];
+
+export const playlistPart2 = [
+  'Replay - Iyaz',
+  'Solo - Iyaz',
+  'What Makes You Beautiful - One Direction',
+  'Eenie Meenie - Justin Bieber & Sean Kingston',
+  'Somebody to Love - Justin Bieber',
+  'Whatcha Say - Jason Derulo',
+  'Ridin’ Solo - Jason Derulo',
+  'Beautiful Girls - Sean Kingston',
+  'Dynamite - Taio Cruz',
+  'Break Your Heart - Taio Cruz ft. Ludacris',
+];
+
+export const playlistPart3 = [
+  'DJ Got Us Fallin’ In Love - Usher ft. Pitbull',
+  'Take You There - Sean Kingston',
+  'Forever - Chris Brown',
+  'No Air - Jordin Sparks & Chris Brown',
+  'Love Like Woe - The Ready Set',
+  'Glad You Came - The Wanted',
+  'Beauty and a Beat - Justin Bieber ft. Nicki Minaj',
+  'Starships - Nicki Minaj',
+  'Tik Tok - Kesha',
+  'Call Me Maybe - Carly Rae Jepsen',
 ];
