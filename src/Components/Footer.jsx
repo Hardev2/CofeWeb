@@ -14,11 +14,11 @@ const Footer = () => {
           <div className='border-[1px] text-center lg:text-left border-solid border-black p-10 w-[400px] select-none'>
             <h3 className='uppercase font-medium text-[.6rem]'>newsletter</h3>
             <h1 className='italic font-zodiak text-3xl'>Stay in touch</h1>
-            <div className=' flex items-center text-left justify-center lg:justify-start  border-b-[1px] border-solid border-black mt-5 w-full lg:w-[230px]'>
+            <div className=' flex items-center text-left justify-center lg:justify-start  border-b-[1px] border-solid border-black mt-5 lg:w-[230px]'>
               <input
                 type='text'
                 placeholder='Enter email address'
-                className='outline-none'
+                className='outline-none w-[100px] lg:w-full'
               />
               <p className='font-zodiak font-bold text-sm'>GO</p>
             </div>
