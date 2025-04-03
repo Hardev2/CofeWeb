@@ -1,6 +1,6 @@
 'use client';
 import React, { useEffect, useRef } from 'react';
-import Bg from '../../public/Image/About-bg.jpg';
+import Bg from '../../public/Image/about-bg.jpg';
 import Img from '../../public/Image/parallax-img4.jpg';
 
 import { useScroll, useTransform, motion } from 'framer-motion';
