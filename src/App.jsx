@@ -6,7 +6,7 @@ import {
   RouterProvider,
 } from 'react-router-dom';
 import Layout from './Layout/Layout';
-import { Home } from './Page/Home';
+import Home from './Page/Home';
 import About from './Page/About';
 
 const App = () => {

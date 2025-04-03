@@ -29,7 +29,7 @@ import { useRef } from 'react';
 import Lenis from '@studio-freight/lenis';
 import Footer from '../Components/Footer';
 
-export const Home = () => {
+const Home = () => {
   useEffect(() => {
     const lenis = new Lenis();
 
@@ -46,7 +46,12 @@ export const Home = () => {
   }, []);
 
   return (
-    <div className='pt-32 w-full'>
+    <motion.div
+      initial={{ opacity: 0, y: -100 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: 100 }}
+      transition={{ type: 'spring', stiffness: 100, damping: 20 }}
+      className='pt-32 w-full'>
       <Hero />
       <ImageSection />
       <Product />
@@ -56,9 +61,10 @@ export const Home = () => {
       <StoreSection />
       <TextSection />
       <Footer />
-    </div>
+    </motion.div>
   );
 };
+export default Home;
 
 const Hero = () => {
   return (
@@ -81,7 +87,7 @@ const Hero = () => {
             <div className='relative w-auto'>
               <div className='absolute bottom-0 top-11 lg:top-28 left-0 right-0 h-32 bg-white-Color pointer-events-none z-[5]'></div>
               <motion.div
-                initial={{ opacity: 1, y: 100 }}
+                initial={{ opacity: 1, y: 150 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1.2, ease: 'easeOut' }}
                 viewport={{ once: false }}
@@ -94,7 +100,7 @@ const Hero = () => {
             <div className='relative w-auto'>
               <div className='absolute bottom-0 top-11 lg:top-28 left-0 right-0 h-32 bg-white-Color pointer-events-none z-10'></div>
               <motion.div
-                initial={{ opacity: 1, y: 100 }}
+                initial={{ opacity: 1, y: 150 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1.3, delay: 0.2, ease: 'easeOut' }}
                 viewport={{ once: false }}
@@ -107,7 +113,7 @@ const Hero = () => {
             <div className='relative  w-auto'>
               <div className='absolute bottom-0 top-11 lg:top-28 left-0 right-0 h-32 bg-white-Color pointer-events-none z-20'></div>
               <motion.div
-                initial={{ opacity: 1, y: 100 }}
+                initial={{ opacity: 1, y: 150 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1.4, delay: 0.3, ease: 'easeOut' }}
                 viewport={{ once: false }}
@@ -255,7 +261,7 @@ const Product = () => {
           <motion.div
             initial={{ opacity: 1, y: 100 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.3, delay: 0.2, ease: 'easeOut' }}
+            transition={{ duration: 1.3, delay: 0.3, ease: 'easeOut' }}
             viewport={{ once: false }}
             className='relative  z-[5]'>
             <h1 className='text-white uppercase font-extrabold text-4xl text-center lg:text-6xl lg:w-[550px] z-10 select-none'>
@@ -268,7 +274,7 @@ const Product = () => {
           <motion.div
             initial={{ opacity: 1, y: 100 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.4, delay: 0.3, ease: 'easeOut' }}
+            transition={{ duration: 1.4, delay: 0.4, ease: 'easeOut' }}
             viewport={{ once: false }}
             className='relative z-30'>
             <h1 className='text-white uppercase font-extrabold text-4xl  text-center lg:text-6xl lg:w-[550px] z-50 select-none'>
@@ -615,7 +621,7 @@ const StoreSection = () => {
                         animate={{ rotate: 0, opacity: 1 }}
                         exit={{ rotate: selected ? 90 : -90, opacity: 0 }}
                         transition={{ duration: 0.2 }}>
-                        {selected ? <FaMinus /> : <FaPlus />}
+                        {selected === itemData.id ? <FaMinus /> : <FaPlus />}
                       </motion.div>
                     </AnimatePresence>
                   </div>

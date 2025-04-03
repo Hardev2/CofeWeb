@@ -22,10 +22,15 @@ const About = () => {
     };
   }, []);
   return (
-    <div className='relative w-full'>
+    <motion.div
+      initial={{ opacity: 0, y: 100 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -100 }}
+      transition={{ type: 'spring', stiffness: 100, damping: 20 }}
+      className='relative w-full'>
       <Description />
       <Footer />
-    </div>
+    </motion.div>
   );
 };
 
@@ -46,8 +51,9 @@ const Description = () => {
         src={Aboutbg}
         alt='Bg'
         className='w-full h-full lg:h-[250vh] relative top-10'
-        style={{ y: y }}
+        style={{ y: y, filter: 'brightness(50%)' }}
       />
+
       <div className='pt-32 absolute top-4 px-5 lg:px-32 select-none w-full'>
         <h1 className='text-white font-zodiak text-2xl lg:text-5xl font-medium w-[330px] lg:w-[800px]'>
           At Byte & Bean, we believe that coffee is more than a drink—it’s an
@@ -60,7 +66,7 @@ const Description = () => {
           and relax. From our AI-powered ordering system to our customizable
           drinks, we’re redefining what a modern café should be.
         </h1>
-        <div className=' relative right-5 lg:left-28 top-28 float-right'>
+        <div className=' relative right-5 lg:right-32 top-28 float-right'>
           <img
             src={Img}
             alt='Image'
