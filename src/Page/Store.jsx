@@ -65,7 +65,7 @@ const Header = () => {
             animate={{ y: 0 }}
             transition={{ duration: 1, delay: 0.1, ease: 'easeOut' }}
             className='z-[2]'>
-            <h1 className='text-white-Color text-4xl lg:text-6xl font-extrabold select-none uppercase'>
+            <h1 className='text-white-Color text-3xl lg:text-6xl font-extrabold select-none uppercase'>
               Raw and singular
             </h1>
           </motion.div>
@@ -77,7 +77,7 @@ const Header = () => {
             animate={{ y: 0 }}
             transition={{ duration: 1.1, delay: 0.2, ease: 'easeOut' }}
             className='z-[6] relative'>
-            <h1 className='text-white-Color text-4xl lg:text-6xl font-extrabold select-none uppercase'>
+            <h1 className='text-white-Color text-3xl lg:text-6xl font-extrabold select-none uppercase'>
               Coffee Shops
             </h1>
           </motion.div>

@@ -1,8 +1,8 @@
 'use client';
 import React, { useEffect, useRef } from 'react';
-import Aboutbg from '../../public/Image/About-bg.jpg';
+import Bg from '../../public/Image/About-bg.jpg';
 import Img from '../../public/Image/parallax-img4.jpg';
-import Lenis from '@studio-freight/lenis';
+
 import { useScroll, useTransform, motion } from 'framer-motion';
 import Footer from '../Components/Footer';
 
@@ -29,7 +29,7 @@ const Description = () => {
   return (
     <div ref={containerRef} className='sticky h-[170vh] lg:h-[200vh] w-full'>
       <motion.img
-        src={Aboutbg}
+        src={Bg}
         alt='Bg'
         className='w-full h-full lg:h-[250vh] relative top-10'
         style={{ y: y, filter: 'brightness(50%)' }}
