@@ -24,11 +24,6 @@ const navItem = [
     name: 'Store',
     href: '/store',
   },
-
-  {
-    name: 'Collaborations',
-    href: '/collab',
-  },
 ];
 
 const navbarVariant = {
@@ -146,9 +141,11 @@ const Navbar = () => {
             ))}
           </nav>
           <div className='brand-logo p-4 relative lg:right-14  md:block'>
-            <h1 className='font-zodiak text-2xl lg:text-4xl font-extrabold '>
-              BB
-            </h1>
+            <Link to='/'>
+              <h1 className='font-zodiak text-2xl lg:text-4xl font-extrabold '>
+                BB
+              </h1>
+            </Link>
           </div>
           <div className='hidden md:flex items-center justify-center gap-6 text-lg text-zinc-600'>
             <FaFacebook />

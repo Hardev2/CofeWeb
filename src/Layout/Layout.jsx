@@ -1,18 +1,34 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { Outlet, useLocation } from 'react-router-dom';
 import Navbar from '../Components/Navbar';
-import { Outlet } from 'react-router-dom';
-import { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import Lenis from '@studio-freight/lenis';
+
 const Layout = () => {
-  const { pathname } = useLocation();
+  const location = useLocation();
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [pathname]);
+  }, [location.pathname]);
+
+  useEffect(() => {
+    const lenis = new Lenis();
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+
+    return () => {
+      lenis.destroy();
+    };
+  }, []);
+
   return (
     <>
       <Navbar />
-      <Outlet key={pathname} />
+      <Outlet />
     </>
   );
 };

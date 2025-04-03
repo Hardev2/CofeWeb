@@ -17,6 +17,9 @@ import image3 from '../../../public/Carousel/image3.jpg';
 import image4 from '../../../public/Carousel/image4.jpg';
 import image5 from '../../../public/Carousel/image5.jpg';
 import image6 from '../../../public/Carousel/image6.jpg';
+import store1 from '../../../public/Image/store1.jpg';
+import store2 from '../../../public/Image/store2.jpg';
+import store3 from '../../../public/Image/store3.png';
 
 export const heroSection = [
   {
@@ -28,7 +31,10 @@ export const heroSection = [
     },
     description:
       'Join us for a perfect blend of flavor and convenience, designed for the modern coffee lover.',
-    button: 'About Us',
+    button: {
+      title: 'About Us',
+      href: '/about',
+    },
   },
 ];
 
@@ -163,18 +169,51 @@ export const StoreData = [
     name: 'Bytebourg',
     location: '123 Byte Street, Tech City',
     carousel: <InfiniteScroll images={image} />,
+    storeImg: store1,
+    days: {
+      weekdays: {
+        day: 'Monday to Friday',
+        time: 'from 8 AM to 7:30 PM',
+      },
+      weekend: {
+        day: 'Saturday to Sunday',
+        time: 'from 8 AM to 6 PM',
+      },
+    },
   },
   {
     id: 2,
     name: 'Beanova',
     location: '45 Bean Avenue, Innovation Park',
     carousel: <InfiniteScroll images={image} />,
+    storeImg: store2,
+    days: {
+      weekdays: {
+        day: 'Monday to Friday',
+        time: 'from 8 AM to 6:30 PM',
+      },
+      weekend: {
+        day: 'Saturday to Sunday',
+        time: 'from 8 AM to 5 PM',
+      },
+    },
   },
   {
     id: 3,
     name: 'Brewesse',
     location: 'Coming Soon to Your City!',
     carousel: comingSoon(),
+    storeImg: store3,
+    days: {
+      weekdays: {
+        day: 'Monday to Friday',
+        time: 'from 8 AM to 6:30 PM',
+      },
+      weekend: {
+        day: 'Saturday to Sunday',
+        time: 'from 8 AM to 5 PM',
+      },
+    },
   },
 ];
 

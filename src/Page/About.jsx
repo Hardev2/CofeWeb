@@ -7,30 +7,11 @@ import { useScroll, useTransform, motion } from 'framer-motion';
 import Footer from '../Components/Footer';
 
 const About = () => {
-  useEffect(() => {
-    const lenis = new Lenis();
-
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-
-    requestAnimationFrame(raf);
-
-    return () => {
-      lenis.destroy();
-    };
-  }, []);
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 100 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -100 }}
-      transition={{ type: 'spring', stiffness: 100, damping: 20 }}
-      className='relative w-full'>
+    <div className='relative w-full'>
       <Description />
       <Footer />
-    </motion.div>
+    </div>
   );
 };
 
@@ -54,7 +35,12 @@ const Description = () => {
         style={{ y: y, filter: 'brightness(50%)' }}
       />
 
-      <div className='pt-32 absolute top-4 px-5 lg:px-32 select-none w-full'>
+      <motion.div
+        initial={{ opacity: 0, y: 100, scale: 0.8 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        exit={{ opacity: 0, y: -100, scale: 1.2 }}
+        transition={{ duration: 0.5, delay: 0.5, ease: 'easeOut' }}
+        className='pt-32 absolute top-4 px-5 lg:px-32 select-none w-full'>
         <h1 className='text-white font-zodiak text-2xl lg:text-5xl font-medium w-[330px] lg:w-[800px]'>
           At Byte & Bean, we believe that coffee is more than a drink—it’s an
           experience. Our journey began with a simple idea: to merge the warmth
@@ -79,7 +65,7 @@ const Description = () => {
             </h1>
           </div>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };

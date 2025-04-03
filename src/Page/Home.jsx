@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {
   heroSection,
   Coffee,
@@ -22,131 +22,120 @@ import {
   useScroll,
   useTransform,
   AnimatePresence,
+  useAnimation,
 } from 'framer-motion';
-
 import { FaMinus, FaPlus } from 'react-icons/fa';
 import { useRef } from 'react';
-import Lenis from '@studio-freight/lenis';
 import Footer from '../Components/Footer';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
-  useEffect(() => {
-    const lenis = new Lenis();
-
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-
-    requestAnimationFrame(raf);
-
-    return () => {
-      lenis.destroy();
-    };
-  }, []);
-
   return (
-    <motion.div
-      initial={{ opacity: 0, y: -100 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: 100 }}
-      transition={{ type: 'spring', stiffness: 100, damping: 20 }}
-      className='pt-32 w-full'>
+    <div className='pt-32 w-full bg-white-Color'>
       <Hero />
       <ImageSection />
-      <Product />
+      <Shop />
       <ParallaxSection />
       <Explore />
       <VideoSection />
       <StoreSection />
       <TextSection />
       <Footer />
-    </motion.div>
+    </div>
   );
 };
 export default Home;
 
 const Hero = () => {
   return (
-    <div className=' px-8 lg:px-16  relative flex flex-col items-center justify-center w-full'>
-      {heroSection.map((item, index) => (
-        <div
-          className=' relative flex flex-col items-center justify-center w-full'
-          key={index}>
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: 'easeOut' }}
-            viewport={{ once: false }}
-            className='mb-5'>
-            <h1 className='font-zodiak font-thin text-2xl text-black-Color select-none'>
-              {item.subHeader}
-            </h1>
-          </motion.div>
-          <div className='relative'>
-            <div className='relative w-auto'>
-              <div className='absolute bottom-0 top-11 lg:top-28 left-0 right-0 h-32 bg-white-Color pointer-events-none z-[5]'></div>
-              <motion.div
-                initial={{ opacity: 1, y: 150 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1.2, ease: 'easeOut' }}
-                viewport={{ once: false }}
-                className='text-center relative z-[2]'>
-                <h1 className='font-extrabold uppercase text-zinc-800 text-5xl lg:text-[8rem] select-none lg:leading-[108px]  '>
-                  {item.header.text1}
-                </h1>
-              </motion.div>
+    <AnimatePresence mode='wait'>
+      <motion.div
+        initial={{ opacity: 0, y: 100, scale: 0.8 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        exit={{ opacity: 0, y: -100, scale: 1.2 }}
+        transition={{ duration: 0.5, delay: 0.5, ease: 'easeOut' }}
+        className=' px-8 lg:px-16  relative flex flex-col items-center justify-center w-full bg-white-Color'>
+        {heroSection.map((item, index) => (
+          <div
+            className=' relative flex flex-col items-center justify-center w-full'
+            key={index}>
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, ease: 'easeOut' }}
+              viewport={{ once: false }}
+              className='mb-5'>
+              <h1 className='font-zodiak font-thin text-2xl text-black-Color select-none'>
+                {item.subHeader}
+              </h1>
+            </motion.div>
+            <div className='relative'>
+              <div className='relative w-auto'>
+                <div className='absolute bottom-0 top-11 lg:top-28 left-0 right-0 h-32 bg-white-Color pointer-events-none z-[5]'></div>
+                <motion.div
+                  initial={{ opacity: 1, y: 150 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 1.2, ease: 'easeOut' }}
+                  viewport={{ once: false }}
+                  className='text-center relative z-[2]'>
+                  <h1 className='font-extrabold uppercase text-zinc-800 text-5xl lg:text-[8rem] select-none lg:leading-[108px]  '>
+                    {item.header.text1}
+                  </h1>
+                </motion.div>
+              </div>
+              <div className='relative w-auto'>
+                <div className='absolute bottom-0 top-11 lg:top-28 left-0 right-0 h-32 bg-white-Color pointer-events-none z-10'></div>
+                <motion.div
+                  initial={{ opacity: 1, y: 150 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 1.3, delay: 0.2, ease: 'easeOut' }}
+                  viewport={{ once: false }}
+                  className='  relative text-center  z-[5]'>
+                  <h1 className='font-extrabold uppercase text-zinc-800 text-5xl lg:text-[8rem] select-none lg:leading-[108px]  '>
+                    {item.header.text2}
+                  </h1>
+                </motion.div>
+              </div>
+              <div className='relative  w-auto'>
+                <div className='absolute bottom-0 top-11 lg:top-28 left-0 right-0 h-32 bg-white-Color pointer-events-none z-20'></div>
+                <motion.div
+                  initial={{ opacity: 1, y: 150 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 1.4, delay: 0.3, ease: 'easeOut' }}
+                  viewport={{ once: false }}
+                  className=' relative text-center z-[10] '>
+                  <h1 className='font-extrabold uppercase text-zinc-800 text-5xl lg:text-[8rem] select-none lg:leading-[108px]  '>
+                    {item.header.text3}
+                  </h1>
+                </motion.div>
+              </div>
             </div>
-            <div className='relative w-auto'>
-              <div className='absolute bottom-0 top-11 lg:top-28 left-0 right-0 h-32 bg-white-Color pointer-events-none z-10'></div>
-              <motion.div
-                initial={{ opacity: 1, y: 150 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1.3, delay: 0.2, ease: 'easeOut' }}
-                viewport={{ once: false }}
-                className='  relative text-center  z-[5]'>
-                <h1 className='font-extrabold uppercase text-zinc-800 text-5xl lg:text-[8rem] select-none lg:leading-[108px]  '>
-                  {item.header.text2}
-                </h1>
-              </motion.div>
-            </div>
-            <div className='relative  w-auto'>
-              <div className='absolute bottom-0 top-11 lg:top-28 left-0 right-0 h-32 bg-white-Color pointer-events-none z-20'></div>
-              <motion.div
-                initial={{ opacity: 1, y: 150 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1.4, delay: 0.3, ease: 'easeOut' }}
-                viewport={{ once: false }}
-                className=' relative text-center z-[10] '>
-                <h1 className='font-extrabold uppercase text-zinc-800 text-5xl lg:text-[8rem] select-none lg:leading-[108px]  '>
-                  {item.header.text3}
-                </h1>
-              </motion.div>
-            </div>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, ease: 'easeOut' }}
+              viewport={{ once: false }}
+              className='mb-5 mt-5 text-center z-30 select-none'>
+              <p className='text-gray-800 w-full text-xs lg:text-lg lg:w-[600px]'>
+                {item.description}
+              </p>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, ease: 'easeOut' }}
+              viewport={{ once: false }}
+              className='z-40'>
+              <Link to={item.button.href}>
+                <button className='border-[1px] border-solid border-black-Color px-8 py-2 hover:bg-black-Color hover:text-white-Color duration-700 '>
+                  {item.button.title}
+                </button>
+              </Link>
+            </motion.div>
           </div>
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: 'easeOut' }}
-            viewport={{ once: false }}
-            className='mb-5 mt-5 text-center z-30 select-none'>
-            <p className='text-gray-800 w-full text-xs lg:text-lg lg:w-[600px]'>
-              {item.description}
-            </p>
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: 'easeOut' }}
-            viewport={{ once: false }}
-            className='z-40'>
-            <button className='border-[1px] border-solid border-black-Color px-8 py-2 hover:bg-black-Color hover:text-white-Color duration-700 '>
-              {item.button}
-            </button>
-          </motion.div>
-        </div>
-      ))}
-    </div>
+        ))}
+      </motion.div>
+    </AnimatePresence>
   );
 };
 
@@ -186,50 +175,7 @@ const ImageSection = () => {
   );
 };
 
-const Product = () => {
-  const productVariant = {
-    hidden: {
-      opacity: 0,
-    },
-    visible: {
-      opacity: 1,
-      transition: {
-        duration: 0.5,
-        when: 'beforeChildren',
-        staggerChildren: 0.5,
-      },
-    },
-    exit: {
-      opacity: 0,
-      transition: {
-        duration: 0.5,
-        when: 'afterChildren',
-        staggerChildren: 0.2,
-        staggerDirection: -1,
-      },
-    },
-  };
-
-  const itemVariant = {
-    hidden: {
-      opacity: 0,
-      y: 20,
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.7,
-      },
-    },
-    exit: {
-      opacity: 0,
-      y: -20,
-      transition: {
-        duration: 0.5,
-      },
-    },
-  };
+const Shop = () => {
   return (
     <div className='w-full bg-black-Color'>
       <div className='flex items-center justify-center flex-col px-5 pt-20 lg:pt-44 mb-6 '>
@@ -283,15 +229,82 @@ const Product = () => {
           </motion.div>
         </div>
       </div>
+      <Product />
+      <div className='w-full text-center pb-10'>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease: 'easeOut' }}
+          viewport={{ once: false }}
+          className='z-40'>
+          <Link to='/menu'>
+            <button className='border-[1px] border-solid border-white-Color px-8 py-2 hover:bg-white-Color hover:text-black-Color duration-700 uppercase text-sm text-white-Color'>
+              Menu
+            </button>
+          </Link>
+        </motion.div>
+      </div>
+    </div>
+  );
+};
 
+export const Product = ({ triggerOnScroll = true, itemLimit = 6 }) => {
+  const controls = useAnimation();
+  const productVariant = {
+    hidden: {
+      opacity: 0,
+    },
+    visible: {
+      opacity: 1,
+      transition: {
+        duration: 0.5,
+        when: 'beforeChildren',
+        staggerChildren: 0.5,
+      },
+    },
+    exit: {
+      opacity: 0,
+      transition: {
+        duration: 0.5,
+        when: 'afterChildren',
+        staggerChildren: 0.2,
+        staggerDirection: -1,
+      },
+    },
+  };
+
+  const itemVariant = {
+    hidden: {
+      opacity: 0,
+      y: 20,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.7,
+      },
+    },
+    exit: {
+      opacity: 0,
+      y: -20,
+      transition: {
+        duration: 0.5,
+      },
+    },
+  };
+  return (
+    <div className='w-full bg-black-Color'>
       <motion.div
         variants={productVariant}
         initial='hidden'
-        whileInView='visible'
+        {...(triggerOnScroll
+          ? { whileInView: 'visible' }
+          : { animate: 'visible' })}
         exit='exit'
         className='w-full px-8 lg:px-16 py-10 h-auto grid gap-4 lg:gap-0 grid-cols-2 lg:grid-cols-3 place-items-start relative z-40'>
         {Coffee && Coffee.length > 0 ? (
-          Coffee.slice(0, 6).map((item) => (
+          Coffee.slice(0, itemLimit).map((item) => (
             <AnimatePresence mode='wait' initial={true}>
               <motion.div
                 variants={itemVariant}
