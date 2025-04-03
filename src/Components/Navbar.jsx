@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { FiMenu, FiX } from 'react-icons/fi';
 import Gif from '../../public/Image/wordlogo.png';
 import { FaFacebook, FaInstagram, FaTwitter } from 'react-icons/fa';
+import { useEffect } from 'react';
 
 const navItem = [
   {
@@ -19,11 +20,20 @@ const navItem = [
     name: 'Menu',
     href: '/menu',
   },
+  {
+    name: 'Store',
+    href: '/store',
+  },
+
+  {
+    name: 'Collaborations',
+    href: '/collab',
+  },
 ];
 
 const navbarVariant = {
-  hidden: { y: -50, opacity: 0 },
-  visible: { y: 0, opacity: 1, transition: { duration: 0.7, ease: 'easeOut' } },
+  hidden: { y: -100, opacity: 1 },
+  visible: { y: 0, opacity: 1, transition: { duration: 1, ease: 'easeOut' } },
 };
 
 const menuVariant = {
@@ -78,18 +88,37 @@ const itemVariants = {
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const [visible, setVisible] = useState(true);
   const location = useLocation();
+
+  useEffect(() => {
+    setIsOpen(false); // Close the mobile menu when navigating to another page
+  }, [location.pathname]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > lastScrollY) {
+        setVisible(false);
+      } else {
+        setVisible(true);
+      }
+      setLastScrollY(window.scrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [lastScrollY]);
 
   return (
     <motion.header
       variants={navbarVariant}
       initial='hidden'
-      animate='visible'
+      animate={visible ? 'visible' : 'hidden'}
       className='fixed w-full z-50 border-b-[1px] border-solid border-black-Color lg:px-6  bg-white-Color'>
       <div className='mx-auto lg:px-4 lg:py-2 '>
         <div className='flex items-center justify-between'>
-          <nav className='hidden md:flex items-center justify-center gap-10'>
+          <nav className='hidden md:flex items-center justify-start gap-8 w-[200px]'>
             {navItem.map((item, index) => (
               <motion.div
                 whileHover={{ scale: 1.05 }}
@@ -98,9 +127,9 @@ const Navbar = () => {
                   to={item.href}
                   key={index}
                   className={cn(
-                    '',
+                    'text-[.8rem]',
                     location.pathname === item.href
-                      ? 'text-black-Color'
+                      ? 'text-black-Color font-bold'
                       : 'text-zinc-600'
                   )}>
                   {item.name}
@@ -163,7 +192,7 @@ const Navbar = () => {
             animate='visible'
             exit='exit'
             className='md:hidden fixed left-0 top-0 inset-0 h-[110vh] bg-black-Color overflow-hidden'>
-            <nav className='flex flex-col px-4 py-6 space-y-6 gap-8'>
+            <nav className='flex flex-col px-4 py-6 space-y-6 gap-2'>
               {navItem.map((item, index) => (
                 <motion.div
                   whileHover={{ scale: 1.05 }}
@@ -194,7 +223,7 @@ const Navbar = () => {
                 variants={itemVariants}
                 className='w-full flex items-end justify-center lg:justify-between '>
                 <div>
-                  <h1 className='text-zinc-400 text-lg w-[180px]'>
+                  <h1 className='text-zinc-400 text-lg w-[180px] relative bottom-14 select-none'>
                     Just brewed happiness in a cup!
                   </h1>
                 </div>

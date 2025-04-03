@@ -27,6 +27,7 @@ import {
 import { FaMinus, FaPlus } from 'react-icons/fa';
 import { useRef } from 'react';
 import Lenis from '@studio-freight/lenis';
+import Footer from '../Components/Footer';
 
 export const Home = () => {
   useEffect(() => {
@@ -54,6 +55,7 @@ export const Home = () => {
       <VideoSection />
       <StoreSection />
       <TextSection />
+      <Footer />
     </div>
   );
 };
@@ -121,7 +123,7 @@ const Hero = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: 'easeOut' }}
             viewport={{ once: false }}
-            className='mb-5 mt-5 text-center z-30'>
+            className='mb-5 mt-5 text-center z-30 select-none'>
             <p className='text-gray-800 w-full text-xs lg:text-lg lg:w-[600px]'>
               {item.description}
             </p>
@@ -312,11 +314,11 @@ const Product = () => {
                       />
                     </div>
                   </div>
-                  <div className='my-5 lg:w-[390px]'>
+                  <div className='my-5 lg:w-[390px] select-none'>
                     <h3 className='text-[#decca8] mb-3 uppercase font-extrabold text-lg'>
                       {item.name}
                     </h3>
-                    <div className='flex items-center justify-between'>
+                    <div className='flex items-center justify-between '>
                       <p className='text-[#decca8] text-sm'>
                         {item.ingredients.join(', ')}
                       </p>
@@ -476,7 +478,7 @@ const Explore = () => {
           transition={{ duration: 1, ease: 'easeOut' }}
           viewport={{ once: false }}
           className='mb-5 mt-5 text-center z-30'>
-          <p className='text-gray-800 w-full text-xs lg:text-lg lg:w-[600px]'>
+          <p className='text-gray-800 w-full text-xs lg:text-lg lg:w-[600px] select-none'>
             We are for unique aesthetics – where design meets flavor.
           </p>
         </motion.div>
@@ -548,7 +550,7 @@ const StoreSection = () => {
     },
   };
   return (
-    <div className='pt-20 w-full h-auto bg-black-Color'>
+    <div className='pt-20 w-full h-auto  bg-black-Color'>
       <div className='relative'>
         <div className='bg-black-Color absolute  top-9 lg:top-[66px] left-0 right-0 bottom-0 pointer-events-none h-32 z-[5]'></div>
         <motion.div
@@ -557,7 +559,7 @@ const StoreSection = () => {
           transition={{ duration: 1.2, ease: 'easeOut' }}
           viewport={{ once: false }}
           className='relative flex items-center justify-center z-[2]'>
-          <h1 className='text-white uppercase font-extrabold  text-4xl lg:text-7xl  '>
+          <h1 className='text-white uppercase font-extrabold  text-4xl lg:text-7xl  select-none'>
             Byte & Bean
           </h1>
         </motion.div>
@@ -570,7 +572,7 @@ const StoreSection = () => {
           transition={{ duration: 1.3, delay: 0.1, ease: 'easeOut' }}
           viewport={{ once: false }}
           className='relative flex items-center justify-center  z-[5]'>
-          <h1 className='text-white  uppercase font-extrabold text-4xl lg:text-7xl '>
+          <h1 className='text-white  uppercase font-extrabold text-4xl lg:text-7xl select-none'>
             Coffee
           </h1>
         </motion.div>
@@ -583,7 +585,7 @@ const StoreSection = () => {
           transition={{ duration: 1.3, delay: 0.1, ease: 'easeOut' }}
           viewport={{ once: false }}
           className='relative flex items-center justify-center  z-[12]'>
-          <h1 className='text-white uppercase font-extrabold text-4xl lg:text-7xl '>
+          <h1 className='text-white uppercase font-extrabold text-4xl lg:text-7xl select-none'>
             Store
           </h1>
         </motion.div>
@@ -596,8 +598,8 @@ const StoreSection = () => {
                 key={itemData.id}
                 onClick={() => handleSingleSelection(itemData.id)}
                 className='flex flex-col items-center  py-5 border-t-[1px] border-solid border-white last:border-b-[1px] cursor-pointer group'>
-                <div className='flex items-center justify-between w-full text-white px-10'>
-                  <div className='flex items-center justify-center gap-2'>
+                <div className='flex items-center justify-between w-full text-white px-5 lg:px-10 flex-wrap'>
+                  <div className='flex items-center justify-center gap-2 select-none'>
                     <h1 className='text-xl lg:text-5xl font-extrabold uppercase'>
                       {itemData.name}
                     </h1>
@@ -637,7 +639,7 @@ const StoreSection = () => {
           )}
         </div>
       </div>
-      <div className='text-center mt-14'>
+      <div className='relative text-center bg-black-Color pt-14'>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -655,7 +657,7 @@ const StoreSection = () => {
 
 const TextSection = () => {
   return (
-    <div className='w-full h-screen text-center bg-black-Color pt-[200px]'>
+    <div className='w-full h-[85vh] lg:h-[135vh] text-center bg-black-Color pt-[200px] select-none'>
       <motion.h1
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -680,6 +682,18 @@ const TextSection = () => {
       <TextLoop songs={playlistPart1} />
       <TextLoop songs={playlistPart2} />
       <TextLoop songs={playlistPart3} />
+      <div className='text-center mt-14'>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease: 'easeOut' }}
+          viewport={{ once: false }}
+          className='z-40'>
+          <button className='border-[1px] border-solid border-white-Color px-8 py-2 hover:bg-white hover:text-black-Color duration-700  text-[.7rem] text-white-Color uppercase '>
+            Byte & Bean Playlist
+          </button>
+        </motion.div>
+      </div>
     </div>
   );
 };
@@ -703,7 +717,7 @@ const TextLoop = ({ songs = [] }) => {
         {songs.map((word, index) => (
           <span
             key={index}
-            className='mx-4 text-4xl lg:text-7xl text-white font-zodiak italic font-thin'>
+            className='mx-4 text-4xl lg:text-7xl text-white font-zodiak italic font-thin select-none'>
             {word}
           </span>
         ))}
