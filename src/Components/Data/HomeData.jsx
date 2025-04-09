@@ -20,6 +20,11 @@ import image6 from '../../../public/Carousel/image6.jpg';
 import store1 from '../../../public/Image/store1.jpg';
 import store2 from '../../../public/Image/store2.jpg';
 import store3 from '../../../public/Image/store3.png';
+import pic1 from '../../../public/Carousel/pic1.jpeg';
+import pic2 from '../../../public/Carousel/pic2.jpeg';
+import pic3 from '../../../public/Carousel/pic3.jpeg';
+import pic4 from '../../../public/Carousel/pic4.jpeg';
+import pic5 from '../../../public/Carousel/pic5.jpeg';
 
 export const heroSection = [
   {
@@ -150,6 +155,33 @@ const image = [
     alt: 'Image',
   },
 ];
+const image2carousel = [
+  {
+    id: 1,
+    src: pic1,
+    alt: 'Image',
+  },
+  {
+    id: 2,
+    src: pic2,
+    alt: 'Image',
+  },
+  {
+    id: 3,
+    src: pic3,
+    alt: 'Image',
+  },
+  {
+    id: 4,
+    src: pic4,
+    alt: 'Image',
+  },
+  {
+    id: 5,
+    src: pic5,
+    alt: 'Image',
+  },
+];
 
 const comingSoon = () => {
   return (
@@ -185,7 +217,7 @@ export const StoreData = [
     id: 2,
     name: 'Beanova',
     location: '45 Bean Avenue, Innovation Park',
-    carousel: <InfiniteScroll images={image} />,
+    carousel: <InfiniteScroll images={image2carousel} />,
     storeImg: store2,
     days: {
       weekdays: {

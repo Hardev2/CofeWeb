@@ -13,7 +13,7 @@ const Menu = () => {
       <div>
         <Product triggerOnScroll={false} itemLimit={6} />
       </div>
-      <div className='text-center font-zodiak text-3xl lg:text-6xl bg-black-Color text-white-Color select-none py-20'>
+      <div className='text-center font-zodiak text-2xl lg:text-6xl bg-black-Color text-white-Color select-none py-20'>
         <h1>We are diverse blends, expertly crafted.</h1>
         <h1>We are for mindful brewing and for</h1>
         <h1>fueling creativity with every sip.</h1>
